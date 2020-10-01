@@ -45,14 +45,13 @@ when you're on an empty line. If you're in the middle of entering text then pres
 to submit the current query (even if it has syntax errors) then press CTRL+D on an
 empty line to quit.
 
-Write your SQL commands into different .sql files and execute them using
+Write your SQL commands into the `starter-code/clues.sql` file and execute it using
 
 ```
-psql -f query1.sql
-psql -f query2.sql
-psql -f query3.sql
-... and so forth
+psql -f starter-code/clues.sql
 ```
+
+Hint: Every time you run this command, all your queries will run. If you've finished with a query and don't want it to run any longer, comment it out.
 
 Then, use the clues below to create the appropriate SQL queries to help you find Carmen and then, tell us where she's heading!!
 
