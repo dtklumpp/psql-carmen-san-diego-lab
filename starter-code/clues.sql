@@ -1,13 +1,13 @@
 --practice / orientation
 
 \c world
--- SELECT COUNT(*) FROM city;
--- SELECT COUNT(*) FROM countrylanguage;
--- SELECT COUNT(*) FROM country;
+SELECT COUNT(*) FROM city;
+SELECT COUNT(*) FROM countrylanguage;
+SELECT COUNT(*) FROM country;
 
--- SELECT * FROM city LIMIT 1;
--- SELECT * FROM countrylanguage LIMIT 1;
--- SELECT * FROM country LIMIT 1;
+SELECT * FROM city LIMIT 1;
+SELECT * FROM countrylanguage LIMIT 1;
+SELECT * FROM country LIMIT 1;
 
 
 
@@ -45,10 +45,42 @@ WHERE countrycode = 'VAT';
 
 
 
-
 -- Clue #3: We have new news on the classes Carmen attended – our gumshoes tell us she's moved on
 -- to a different country, a country where people speak only the language she was learning. Find out which
 --  nearby country speaks nothing but that language.
+
+
+-- SELECT countrycode, COUNT(*) FROM countrylanguage
+-- JOIN country
+-- ON country.code = countrylanguage.countrycode
+-- WHERE language = 'Italian'
+-- GROUP BY language, countrylanguage.countrycode;
+
+SELECT language, COUNT(*) FROM countrylanguage 
+GROUP BY language
+LIMIT 10;
+
+SELECT name, COUNT(*) FROM country
+JOIN countrylanguage
+ON country.code = countrylanguage.countrycode
+WHERE region = 'Southern Europe'
+GROUP BY name
+HAVING COUNT(*) = 1
+ORDER BY name;
+
+SELECT name, code FROM country
+JOIN countrylanguage
+ON country.code = countrylanguage.countrycode
+WHERE region = 'Southern Europe'
+AND language = 'Italian'
+ORDER BY name;
+
+-- how to combine these last two, will come back to that one
+-- looks like answer is San Marino though, SMR
+
+
+
+
 
 
 
@@ -57,11 +89,34 @@ WHERE countrycode = 'VAT';
  -- would be too obvious. We're following our gut on this one; find out what other city in that country she might
  --  be flying to.
 
+SELECT * FROM city
+WHERE countrycode = 'SMR'
+AND name <> 'San Marino';
+--Serravalle
+
+
+
+
+
 
 
 -- Clue #5: Oh no, she pulled a switch – there are two cities with very similar names, but in totally different
 -- parts of the globe! She's headed to South America as we speak; go find a city whose name is like the one we were
 -- headed to, but doesn't end the same. Find out the city, and do another search for what country it's in. Hurry!
+
+SELECT * FROM city
+WHERE name LIKE '%Serra%';
+--Serra
+
+SELECT * from country
+WHERE code = 'BRA';
+--the sly minx, she's in Brazil!
+
+
+
+
+
+
 
 
 
@@ -69,11 +124,33 @@ WHERE countrycode = 'VAT';
  -- the capital! Look up the country's capital, and get there pronto! Send us the name of where you're headed and we'll
  -- follow right behind you!
 
+SELECT capital from country
+WHERE code = 'BRA';
+---aha it's 211
+
+SELECT name FROM city
+WHERE id = 211;
+--it's Bras(something)lia
+--probably Brasilia
+
+
+
+
+
 
 
 -- Clue #7: She knows we're on to her – her taxi dropped her off at the international airport, and she beat us to
  -- the boarding gates. We have one chance to catch her, we just have to know where she's heading and beat her to the
  -- landing dock.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -86,6 +163,13 @@ WHERE countrycode = 'VAT';
 -- I need a little more sunshine with my slice of life.
 -- So I'm off to add one to the population I find
 -- In a city of ninety-one thousand and now, eighty five.
+
+
+
+
+
+
+
 
 
 -- We're counting on you, gumshoe. Find out where she's headed, send us the info, and we'll be sure to meet her at the gates with bells on.
