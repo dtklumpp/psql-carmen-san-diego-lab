@@ -144,7 +144,7 @@ WHERE id = 211;
  -- landing dock.
 
 
-
+---um is this a clue?
 
 
 
@@ -164,9 +164,12 @@ WHERE id = 211;
 -- So I'm off to add one to the population I find
 -- In a city of ninety-one thousand and now, eighty five.
 
+SELECT * FROM city
+WHERE id = 211;
 
-
-
+SELECT * FROM city
+WHERE population = 91084;
+--aha!
 
 
 
@@ -176,4 +179,8 @@ WHERE id = 211;
 
 
 
--- She's in ______________________!
+-- She's in Santa Monica!
+
+--i used to live there!
+--along with my old humor-magazine mentor mike gerber
+--and some of our would-be investors!!
