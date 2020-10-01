@@ -1,12 +1,48 @@
+--practice / orientation
+
+\c world
+-- SELECT COUNT(*) FROM city;
+-- SELECT COUNT(*) FROM countrylanguage;
+-- SELECT COUNT(*) FROM country;
+
+-- SELECT * FROM city LIMIT 1;
+-- SELECT * FROM countrylanguage LIMIT 1;
+-- SELECT * FROM country LIMIT 1;
+
+
+
+
+
+
+
+
+
 -- Clue #1: We recently got word that someone fitting Carmen Sandiego's description has been
 -- traveling through Southern Europe. She's most likely traveling someplace where she won't be noticed,
 -- so find the least populated country in Southern Europe, and we'll start looking for her there.
+
+-- SELECT * FROM country
+-- WHERE region = 'Southern Europe';
+
+SELECT MIN(population), country.name, country.code
+FROM country
+WHERE region = 'Southern Europe'
+GROUP BY country.name, country.population, country.code
+ORDER BY country.population;
+
 
 
 
 -- Clue #2: Now that we're here, we have insight that Carmen was seen attending language classes in
 -- this country's officially recognized language. Check our databases and find out what language is
 -- spoken in this country, so we can call in a translator to work with you.
+
+
+
+SELECT * FROM countrylanguage
+WHERE countrycode = 'VAT';
+
+
 
 
 
