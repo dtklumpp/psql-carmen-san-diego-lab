@@ -30,7 +30,11 @@ WHERE region = 'Southern Europe'
 GROUP BY country.name, country.population, country.code
 ORDER BY country.population;
 
-
+--ps beatrix's way:
+-- SELECT name
+-- FROM country
+-- WHERE region = 'Southern Europe'
+-- ORDER BY population LIMIT 1;
 
 
 -- Clue #2: Now that we're here, we have insight that Carmen was seen attending language classes in
@@ -184,3 +188,21 @@ WHERE population = 91084;
 --i used to live there!
 --along with my old humor-magazine mentor mike gerber
 --and some of our would-be investors!!
+
+-- DECLARE dtk SMALLINT;
+
+
+-- SELECT @minpop = Min(population)
+-- FROM country
+-- WHERE region = 'Southern Europe';
+-- declare @minpop uniqueidentifier;
+
+-- SET @minpop 
+
+
+-- SELECT name FROM country
+-- WHERE population = @minpop;
+
+-- SET @ModelID = (SELECT m.modelid 
+--                   FROM MODELS m
+--                  WHERE m.areaid = 'South Coast')
